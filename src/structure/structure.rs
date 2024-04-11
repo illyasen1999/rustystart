@@ -41,12 +41,61 @@ impl Rectangle { // Rectangle now has a method of rectangle_area
         let res = self.width > other.width && self.height > other.height;
         return res;
     }
+
+    // Associated Functions
+    // are not methods as they dont have the "&self" as their first parameter and often called using the double colon(::) syntax
+    fn square(size: u32) -> Self {
+        Self {
+            width: size,
+            height: size,
+        }
+    }
     
     // we can have a method the same name as the fields
     // when we give a method the same name as a field we want it to only return the value in the field and do nothing else, these are like "getters" in other programming langugages so that you can make the field private and the method public
      fn width(&self) -> bool { //  we are just checking if the user has provided a value on the width
         return self.width > 0;
      }
+}
+
+// Multiple impl Blocks - a struct can have multiple impl blocks and its still valid use
+// impl Rectangle {
+//     fn can_hold(&self, other: &Rectangle) -> bool {
+//         let res = self.width > other.width && self.height > other.height;
+//         return res;
+//     }
+// }
+
+// Enum
+// gives you a way of saying a value is one of a possible set of values
+enum IpAddrKind {
+    V4(String),
+    // V4(u8, u8, u8, u8), // other advantages of enums is that it can have different types and amounts of associated data ex. ipv4 always has 4 components that has values between 0-255
+    V6(String),
+}
+
+// struct IpAddr { // this can aslo be represented just by adding data directly to each enum
+//     kind: IpAddrKind,
+//     address: String,
+// }
+
+// like structs, enums can also have impl methods attached to them
+enum Message {
+    Quit,
+    Move { x: i32, y: i32 },
+    Write(String),
+    ChangeColor(i32, i32, i32),
+}
+
+impl Message {
+    fn call(&self) {
+        println!("reply: Hi\n");
+    }
+
+    fn calling(message: String) -> String {
+        // running some code
+        return message;
+    }
 }
 
 
@@ -145,8 +194,53 @@ pub fn structures(){
     println!("Can rect1 hold rect2?: {}\n", rect1.can_hold(&rect2));
     println!("Can rect1 hold rect3?: {}\n", rect1.can_hold(&rect3));
 
-    // https://doc.rust-lang.org/book/ch05-03-method-syntax.html#associated-functions
+    let sq = Rectangle::square(3);
+    println!("Square: {:?}\n", &sq);
 
+    // creating instances of the IpAddrKind enum
+    // let ip_ver_four = IpAddrKind::V4;
+    // let ip_ver_six = IpAddrKind::V6;
+
+    // let home_ip = IpAddr {
+    //     kind: IpAddrKind::V4,
+    //     address: String::from("127.0.0.1"),
+    // };
+
+    // let loopback_ip = IpAddr {
+    //     kind: IpAddrKind::V6,
+    //     address: String::from("::1"),
+    // };
+
+    let _home_ip = IpAddrKind::V4(String::from("127.0.0.1"));
+    let _loopback_ip = IpAddrKind::V6(String::from("::1"));
+
+    // sample of the enum having multiple values
+    // let _home = IpAddr::V4(127, 0, 0, 1);
+
+    let _m = Message::Write(String::from("Hello"));
+    _m.call();
+
+    let my_message = &Message::calling(String::from("Test message"));
+
+    println!("My message: {}\n", &my_message);
+
+    // Option enum - an enum type that either returns Some(T) or a None, to remove the null type that is common in other languages
+    /* structure of the Option enum type
+        enum Option<T> {
+            None,
+            Some(T),
+        }
+    */
+    let x: Option<u32> = Some(32);
+    assert_eq!(x.is_some(), true);
+
+    let x: Option<u32> = None;
+    assert_eq!(x.is_some(), false);
+
+    let fetch_data: Option<String> = Some(String::from("Some url string"));
+    println!("URL: {:?}", &fetch_data);
+
+    // https://doc.rust-lang.org/book/ch06-01-defining-an-enum.html#the-option-enum-and-its-advantages-over-null-values
 }
 
 // creating a new instance of User using a function
@@ -175,3 +269,7 @@ fn create_user(email: String, username: String) -> User {
 fn calc_area(rectangle: &Rectangle) -> u32 {
     return rectangle.width * rectangle.height
 }
+
+// fn route(ip_kind: IpAddrKind) {
+//     //
+// }
