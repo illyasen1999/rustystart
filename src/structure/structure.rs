@@ -1,3 +1,5 @@
+use core::num;
+
 // struct - a custom data type that lets you package together and name multiple related values that make up a meaningful group
 // each instance of this struct owns all of its data and that data is to be valid as long as the struct is valid
 struct User { // creating the Structure of User
@@ -98,6 +100,19 @@ impl Message {
     }
 }
 
+// Patterns that Bind to Values
+#[derive(Debug)]
+enum UsState {
+    Alabama,
+    Alaska,
+}
+
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter(UsState), // Quarter now can store a value of UsState which is binded to Quarter
+}
 
 pub fn structures(){
     println!("Topic: Using Structs to Structure Related Data");
@@ -237,10 +252,47 @@ pub fn structures(){
     let x: Option<u32> = None;
     assert_eq!(x.is_some(), false);
 
-    let fetch_data: Option<String> = Some(String::from("Some url string"));
-    println!("URL: {:?}", &fetch_data);
+    let _some_data: Option<String> = Some(String::from("Some data"));
+    let _no_data: Option<String> = None;
 
-    // https://doc.rust-lang.org/book/ch06-01-defining-an-enum.html#the-option-enum-and-its-advantages-over-null-values
+    let num_x: i8 = 8;
+    let num_y: Option<i8> = Some(16); // or it also can be None and set a default number inside the .unwrap_or() method
+    
+    // this is not valid because they are different types and num_y is wrapped around the Option Enum
+    // let sum = num_x + num_y;
+
+    // you can extract the data from num_y using different kinds of methods that the Option Enum has ex. num_y.unwrap_or()
+    // this method returns the value of num_y or if there is no value it can set a default to the number you set a default to
+    let sum = num_x + num_y.unwrap_or(24);
+    println!("The sum is {}\n", &sum);
+
+
+    // match Control Flow Construct
+    // match - allows you to compare a value against a series of patters and then execute code based on which pattern matches
+
+    value_in_cents(Coin::Nickel);
+    value_in_cents(Coin::Quarter(UsState::Alabama));
+
+    let _some_num = Some(10);
+    let _added_num = plus_one(&_some_num);
+    let _no_num = plus_one(&None);
+
+    // Concise Control Flow with "if-let"
+    // a way to handle values that match one pattern and ignores the rest
+    let config_max = Some(3);
+    // match config_max { // for this to execute we need to consider all other possibilities which why the catch-all underscore(_) is needed to be provided even though we dont really need it
+    //     Some(max) => println!("The max config is {}", max),
+    //     _ => (),
+    // }
+
+    // another way to do this is with the "if-let" syntax
+    if let Some(max) = config_max { 
+        println!("The max config is {}", max);
+    }
+
+    println!("{:?}", config_max);
+
+
 }
 
 // creating a new instance of User using a function
@@ -273,3 +325,39 @@ fn calc_area(rectangle: &Rectangle) -> u32 {
 // fn route(ip_kind: IpAddrKind) {
 //     //
 // }
+
+fn value_in_cents(coin: Coin) -> u8{
+    match coin { // "match" can evaluate any type unlike "if" which only evaluates Booleans
+        // these are the "arms" of the "match" pattern which has 2 parts: a pattern and a block of code to execute 
+        Coin::Penny => {
+            println!("Penny\n");
+            return 1
+        },
+        Coin::Nickel => {
+            println!("Nickel\n");
+            return 5
+        },
+        Coin::Dime => return 10,
+        Coin::Quarter(state) => {
+            // the "state" variable will now going to bind to the Quarter enum
+            println!("This Quarter is from {:?}\n", state);
+            return 25
+        },
+    }
+}
+
+// Matcing with Option<T>
+fn plus_one(val: &Option<i32>) -> Option<i32> {
+    match val { // the function takes in a "val" variable and matches it to a condition
+    // Rust Match cases are exhaustive, meaning you need to cover all possible cases, ex. if the None arm was removed it will cause an error an will tell you what you forgot to include in your Match case
+        None => {
+            println!("None was given");
+            return None
+        }, // if None was given execute nothing
+        Some(i) => {
+            println!("Some value was given");
+            return Some(i + 1)
+        }, // else add 1 to the given value
+        // _ => None, // as explained above Rust Match cases are exhaustive an when it comes to handling all other possible cases we can use the underscore(_) to catch all the other possibilities, this can replace the None arm
+    }
+}
