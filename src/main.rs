@@ -3,6 +3,7 @@ mod miniprojects;
 // mod concepts;
 // mod ownership;
 // mod structure;
+mod manage;
 
 
 fn main() {
@@ -11,5 +12,6 @@ fn main() {
     // ownership::ownborrow::ownborrow()
     // structure::structure::structures();
     miniprojects::tempconv::tempconv();
+    manage::manage::manage();
 }
 
