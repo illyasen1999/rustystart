@@ -3,7 +3,7 @@ use std::io;
 use std::cmp::Ordering;
 
 #[warn(dead_code)]
-pub fn guessing_game(){
+pub fn _guessing_game(){
     println!("Guess the number(1-10): ");
 
     // immutable
