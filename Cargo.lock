@@ -62,10 +62,24 @@ dependencies = [
 ]
 
 [[package]]
+name = "restaurant"
+version = "0.1.0"
+dependencies = [
+ "rand",
+]
+
+[[package]]
+name = "restaurant"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d919855bb21e8a01be30fb9e67c8441b79dc4c64eb7714ca6dddf71596aa18c2"
+
+[[package]]
 name = "rustystart"
 version = "0.1.0"
 dependencies = [
  "rand",
+ "restaurant 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]

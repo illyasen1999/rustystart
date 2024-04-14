@@ -1,6 +1,5 @@
-workspace = { members = ["restaurant"] }
 [package]
-name = "rustystart"
+name = "restaurant"
 version = "0.1.0"
 edition = "2021"
 
@@ -8,4 +7,3 @@ edition = "2021"
 
 [dependencies]
 rand = "0.8.5"
-restaurant = "0.1.0"

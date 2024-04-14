@@ -1,0 +1,2 @@
+Notes:
+* if there is another binary file/folder in the directory specify the binary that you want to run with "cargo run" by adding "--bin <folder-name>"
