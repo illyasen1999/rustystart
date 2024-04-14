@@ -1,11 +1,4 @@
-// FIXME: this "use" doesnt work
-// use restaurant::front_of_house::hosting;
-
-// FIXME: 
-// this works but its not printing the output of add_to_waitlist()
 use restaurant::{ self, front_of_house, hosting };
-
-// The Book: https://doc.rust-lang.org/book/ch07-02-defining-modules-to-control-scope-and-privacy.html
 
 // LGR: https://www.youtube.com/watch?v=5RPXgDQrjio&list=PLai5B987bZ9CoVR-QEIN9foz4QCJ0H2Y8&index=7
 
