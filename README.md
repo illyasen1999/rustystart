@@ -13,5 +13,7 @@ And try to commit to Github atleast everyday no matter how small or ugly the cod
 * [x] Finish Chapter 6
 * [x] Create a small project (After Chapter 6)
 * [ ] Continue with The Book(Chapter 7 onwards)
-* [ ] ...
 * [ ] Attempt to create some medium to large project with Rust
+  
+## FIXING:
+* [ ] <font color="yellow" style="font-size: 15px; font-weight: 600;">Fix problem with the Restaurant Library not working properly</font>
