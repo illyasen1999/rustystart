@@ -1,4 +1,6 @@
 // Explenation Video: https://www.youtube.com/watch?v=5RPXgDQrjio&list=PLai5B987bZ9CoVR-QEIN9foz4QCJ0H2Y8&index=7
+// The Book Chapter: https://doc.rust-lang.org/book/ch07-00-managing-growing-projects-with-packages-crates-and-modules.html
+
 // This is a library crate
 // w/o the "pub" keyword the variables, functions, structs etc. are considered private
 

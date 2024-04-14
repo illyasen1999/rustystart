@@ -3,7 +3,11 @@
 
 // FIXME: 
 // this works but its not printing the output of add_to_waitlist()
-use restaurant::hosting;
+use restaurant::{ self, front_of_house, hosting };
+
+// The Book: https://doc.rust-lang.org/book/ch07-02-defining-modules-to-control-scope-and-privacy.html
+
+// LGR: https://www.youtube.com/watch?v=5RPXgDQrjio&list=PLai5B987bZ9CoVR-QEIN9foz4QCJ0H2Y8&index=7
 
 pub fn manage(){
     println!("Topic: Managing Growing Projects with Packages, Crates, and Modules");
@@ -21,5 +25,8 @@ pub fn manage(){
 
     // Paths: A way of naming an item, such as a struct, function, or module
 
-    hosting::add_to_waitlist(); 
+    let _text = hosting::add_to_waitlist();
+    hosting::add_to_waitlist();
+    hosting::seat_at_table();
+    front_of_house::serving::MainCourse::now_serving();
 }

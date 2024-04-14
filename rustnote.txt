@@ -1,2 +1,4 @@
 Notes:
 * if there is another binary file/folder in the directory specify the binary that you want to run with "cargo run" by adding "--bin <folder-name>"
+
+* for local unpublished libraries/lib.rs files on Cargo.toml add them as dependencies and(for me) specify the path of the library (https://stackoverflow.com/questions/33025887/how-to-use-a-local-unpublished-crate)
