@@ -3,7 +3,8 @@
 // mod concepts;
 // mod ownership;
 // mod structure;
-mod manage;
+// mod manage;
+mod collections;
 
 fn main() {
     // miniprojects::guessing_game::guessing_game();
@@ -11,6 +12,7 @@ fn main() {
     // ownership::ownborrow::ownborrow()
     // structure::structure::structures();
     // miniprojects::tempconv::tempconv();
-    manage::manage::manage();
+    // manage::manage::manage();
+    collections::common_collections::common_collections();
 }
 
