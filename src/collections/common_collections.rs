@@ -1,3 +1,5 @@
+use std::vec;
+
 pub fn common_collections() {
     println!("Topic: Common Collections");
 
@@ -52,6 +54,56 @@ pub fn common_collections() {
         None => println!("There is no third element"),
     }
 
-    // https://doc.rust-lang.org/book/ch08-01-vectors.html#reading-elements-of-vectors
+    // trying to access elements outside of the range of the vector / referencing a none existent element
+    let _some_vector = vec![1, 2, 3, 4, 5];
 
+    // let _does_not_exist = &_some_vec[100]; // this panics and gives an error message
+    let _does_not_exist = &_some_vec.get(100); // while this does nothing and not panic since you are not defining the "None" logic
+
+    let mut _other_vec = vec![1, 2, 3, 4, 5];
+    let first = &_other_vec[0];
+    // _other_vec.push(6); // the "first" variable still holds the referenced "_other_vec" vector and still hasnt used the vecor therefore it cannot push a value inside the vector
+    println!("First: {}", &first);
+
+    // iterating over values in a vector
+    // using a for loop
+    let an_immutable_vec = vec![20, 50, 33, 116];
+    for item in &an_immutable_vec {
+        println!("Some New Vec Item: {}", item);
+    }
+
+    // iterating over a mutable vector and making some changes to all elements
+
+    let mut _a_mutable_vec = vec![88, 300, 17, 2413];
+    for element in &mut _a_mutable_vec {
+        *element *= 2; // to change values in a referenced vector you need to dereference it buy using the star(*) symbol to get its values
+        println!("Element x 2 = {}", element);
+
+        // _a_mutable_vec.push(2); // you cannot add or remove an item in an iterating vector as the iterator is still in use of the vector
+    }
+    _a_mutable_vec.push(2); // only after you can add or remove items in the vector
+
+    // Using Enums to store Muliple Types
+    // a normal vector can only store 1 type
+    // enums allow vectors to hold data of multiple types
+    #[derive(Debug)]
+    enum SpreadsheetCell {
+        Int(i32),
+        Float(f32),
+        Text(String),
+    }
+
+    let _row = vec![
+        SpreadsheetCell::Int(3),
+        SpreadsheetCell::Text(String::from("Blue")),
+        SpreadsheetCell::Float(3.14),
+    ];
+
+    println!("Row: {:?}", _row);
+
+    // Dropping a vector drops its elements
+    {
+        let _v = vec![1, 2, 3, 4, 5];
+        // "_v" is valid to use
+    } // "_v" goes out-of-scope and now cannot be used outside of this scope
 }

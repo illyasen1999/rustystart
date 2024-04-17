@@ -71,7 +71,7 @@ pub fn tempconv() {
             .read_line(&mut user_choice)
             .expect("Not in choices");
 
-        println!("{}", user_choice);
+        // println!("{}", user_choice); // for logging purposes
 
         match user_choice.trim().to_uppercase().as_str() {
             "A" => println!("Fah: {}", &temp.cel_to_fah()),
