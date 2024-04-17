@@ -1,4 +1,5 @@
-use std::vec;
+use unicode_segmentation::UnicodeSegmentation;
+use std::collections::HashMap;
 
 pub fn common_collections() {
     println!("Topic: Common Collections");
@@ -106,4 +107,93 @@ pub fn common_collections() {
         let _v = vec![1, 2, 3, 4, 5];
         // "_v" is valid to use
     } // "_v" goes out-of-scope and now cannot be used outside of this scope
+
+    // Sub-topic: Storing UTF-8 Encoded Text with Strings
+    // Strings - is a growable, mutable, owned, UTF-8 encoded string type
+
+    // Creating a new String
+    let mut _new_string = String::new(); // a new instance of a String
+
+    // w/ initial data
+    let initial_data = "Initial Data"; // this is a string slice or &str
+    let _s = initial_data.to_string(); // converts the string slice data to a String type
+    let _s = "Initial Data".to_string(); // this is the same as the one at the top as the string slice have methods 
+
+    // creating a string from a string literal
+    let _new_s = String::from("Initial Data"); // this is also the same with the .to_string() function 
+
+    // Strings are UTF-8 encoded ex.
+    let _kr_lang = String::from("안녕하세요");
+    let _ukranian_lang = String::from("Здравствуйте");
+    let _jp_lang = String::from("こんにちは");
+
+    // Sub-topic: Updating a String
+
+    // Append to a string using push_str and push
+    // grow a string by using .push_str that appends a string slice
+    let mut _pushed_string = String::from("Hello ");
+    _pushed_string.push_str("World"); // output: Hello World
+
+    let mut _push_string = String::from("foo");
+    let _push_string_2 = "bar";
+    _push_string.push_str(_push_string_2); // does not take ownership of _push_string_2, output: foobar
+    
+    // push() takes a single char and adds it to the String
+    let mut _push_s = String::from("LO");
+    _push_s.push('L'); // output: LOL
+
+    // using plus(+) operator
+    let _s1 = String::from("New");
+    let _s2 = String::from("World");
+    let _s3 = _s1 + &_s2; // since s3 owns s1, s1 cannot be used after this line
+    
+    // using the format! macro
+    let _new_s1 = String::from("One");
+    let _new_s2  = String::from("Piece");
+    // format! macro doesnt take ownership so _new_s1 and _new_s2 is still valid
+    let _new_s3 = format!("{} {}", _new_s1, _new_s2); // output: One Piece
+
+    // indexing into a string
+    let _hello_kr = String::from("안녕하세요");
+    // let c: char = _hello[0]; // using a number doesnt work on a String as String has 3 ways a word is represented
+    // Bytes - unit data of a character
+    // accessing the bytes of a string using the .bytes() method
+    for byte in _hello_kr.bytes() {
+        println!("{}", byte);
+    }
+    
+    // Scalar Values - are characters or part of the characters
+    // accessing the chars of a string using the .chars() method
+    for ch in _hello_kr.chars() {
+        println!("{}", ch);
+    }  
+    
+    // Grapheme Clusters - we consider as characters
+    // Rust doesnt have a default function for Grapheme Clusters for that we need an external crate using the unicode-segmentation crate and use the .graphemes() method
+    for g in _hello_kr.graphemes(true) {
+        println!("{}", g);
+    }
+
+    // Sub-topic: Hashmaps
+    // - are a collection of key-value pairs
+    // Hashmaps are a part of the standard library and has to be imported from the collections library, Hasmaps store their data in the heap like Vectors, and all keys must have the same data type
+
+    // creating a new Hashmap
+    let mut scores = HashMap::new();
+
+    scores.insert(String::from("Blue"), 10);
+    scores.insert(String::from("Yellow"), 50);
+
+    // accessing a value in a hashmap using the .get() method and providing it a key, .get() returns an Option enum
+    // .copied() method handles the "None" in the Option enum
+    // .unwrap_or() returns the value of the hashmap and if there is no set value it will use the default value that you provided
+    let _blue_team = scores.get("Blue").copied().unwrap_or(0);
+
+    // iterating in a hashmap
+    for (k,v) in &scores {
+        println!("Team: {}, Score: {}", k, v);
+    }
+
+    // Hashmaps and Ownership
+    // https://doc.rust-lang.org/book/ch08-03-hash-maps.html#hash-maps-and-ownership
 }

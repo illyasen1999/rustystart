@@ -10,3 +10,4 @@ edition = "2021"
 rand = "0.8.5"
 # this is only a local unpublished lib
 restaurant = { path = "./restaurant" }
+unicode-segmentation = "1.11.0"

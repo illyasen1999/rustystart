@@ -24,12 +24,12 @@ pub fn list_of_names() {
         }
     }
 
-    println!("List of names: {:?}", list);
+    println!("List of names(): {:?}", list);
 
 
 }
 
-// TODO: Maybe just write the code in the loop and not require a function?
+// Maybe just write the code in the loop and not require a function?
 fn name_input(name: &mut String) -> String {
     let mut output = name;
 
