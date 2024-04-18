@@ -1,10 +1,10 @@
 // mod test;
-// mod miniprojects;
+mod miniprojects;
 // mod concepts;
 // mod ownership;
 // mod structure;
 // mod manage;
-mod collections;
+// mod collections;
 
 fn main() {
     // miniprojects::guessing_game::guessing_game();
@@ -13,6 +13,7 @@ fn main() {
     // structure::structure::structures();
     // miniprojects::tempconv::tempconv();
     // manage::manage::manage();
-    collections::common_collections::common_collections();
+    // collections::common_collections::common_collections();
     // miniprojects::list_of_names::list_of_names();
+    miniprojects::mememo::mememo();
 }

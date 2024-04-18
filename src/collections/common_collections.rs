@@ -1,5 +1,5 @@
 use unicode_segmentation::UnicodeSegmentation;
-use std::collections::HashMap;
+use std::{collections::HashMap, hash::Hash};
 
 pub fn common_collections() {
     println!("Topic: Common Collections");
@@ -195,5 +195,55 @@ pub fn common_collections() {
     }
 
     // Hashmaps and Ownership
-    // https://doc.rust-lang.org/book/ch08-03-hash-maps.html#hash-maps-and-ownership
+    let _num: i32 = 200; // primitive types have the Copy trait are copied into the hashmap
+    let _my_string = String::from("String"); // types like String are owned so the values will be moved and the hashmap will be the owner of those values
+
+    let field_name = String::from("Fav Color");
+    let field_value = String::from("Blue");
+
+    let mut owned_map = HashMap::new();
+    owned_map.insert(field_name, field_value); // map now owns the field name and value so after this point they are not valid to use
+
+    // println!("{} {}", field_name, field_value); // cannot run this
+
+    let letter_a = 'A';
+    let letter_in_bytes = letter_a as i32;
+    
+    let mut copied_map = HashMap::new();
+    copied_map.insert(letter_a, letter_in_bytes);
+
+    println!("{}: {}", letter_a, letter_in_bytes); // this is valid because primitive types are copied in the hashmap
+
+    // Sub-topic: Updating a Hashmap
+    // Overwriting a value
+
+    let mut new_scores = HashMap::new();
+
+    new_scores.insert(String::from("Blue"), 10);
+    new_scores.insert(String::from("Blue"), 50); // this overwrites the previous value of "Blue"
+
+    // Adding K,V if K isnt present
+    new_scores.entry(String::from("Blue")).or_insert(20); // "Blue" is already in the Hashmap and has already have a Value so its value wont change into 20
+    new_scores.entry(String::from("Yellow")).or_insert(30); // .entry() function adds a Key to the hashmap since Yellow is not currently in the hashmap and adds a Value with the .or_insert() function if it doesnt have a Value already, .or_insert() returns a mutable reference to the value of the entry key if that key exists
+
+    println!("Teams and Scores: {:?}", new_scores);
+
+    // Updating a value based on the old value
+    let text = "Hello world New world";
+
+    let mut text_map = HashMap::new();
+
+    for word in text.split_whitespace() {
+        // grabs individual words as a Key and counting how many times it is mentioned in the sentence as a Value
+        let count = text_map.entry(word).or_insert(0);
+        *count += 1; // dereferencing the count because  .or_insert() function returns a mutable reference
+    }
+
+    println!("{:?}", text_map);
+
+    // Hashing Functions for Security of software
+    // https://doc.rust-lang.org/book/ch08-03-hash-maps.html#hashing-functions
+
+    // https://doc.rust-lang.org/book/ch08-03-hash-maps.html#summary
+
 }
