@@ -9,8 +9,6 @@
 
 use std::collections::HashMap;
 
-// TODO: get the Mean and Mode of both even and odd vectors
-// Mode - number the mostly occurs in the vector
 pub fn mememo() {
     println!("Mean Median and Mode");
 
@@ -23,47 +21,13 @@ pub fn mememo() {
     println!("Random Numbers Odd sorted: {:?}", random_numbers_odd);
 
     // Mean
-    let mut sum_all_odd = 0;
-
-    for element in &random_numbers_odd {
-        sum_all_odd += element;
-    }
-
-    println!("Sum: {}", sum_all_odd);
-
-    let mean_odd = sum_all_odd / 2;
-
-    println!("Odd Mean: {}", mean_odd);
+    mean(String::from("Odd"), &random_numbers_odd);
 
     // Median
-    let length_vec_odd = random_numbers_odd.len();
-    println!("Length Odd: {}", length_vec_odd);
-
-    let avg_odd = random_numbers_odd.len() / 2;
-    println!("Odd Median: {}", random_numbers_odd[avg_odd]);
+    median_odd(&random_numbers_odd);
 
     // Mode
-    let mut odd_map = HashMap::new();
-
-    // let mut counter_map = 0;
-
-    for num in &random_numbers_odd {
-        // counter_map += 1;
-        // TODO: Mode
-        odd_map.insert(String::from("Four"), num);
-        odd_map.insert(String::from("Five"), num);
-        odd_map.insert(String::from("Six"), num);
-        odd_map.insert(String::from("Nine"), num);
-        odd_map.insert(String::from("Ten"), num);
-        // println!("Map: {:?}", &odd_map);
-        odd_map.entry(String::from("Four")).or_insert(&num);
-        odd_map.entry(String::from("Five")).or_insert(&num);
-        odd_map.entry(String::from("Six")).or_insert(&num);        
-        odd_map.entry(String::from("Nine")).or_insert(&num);
-        odd_map.entry(String::from("Ten")).or_insert(&num);        
-    }
-
-    println!("Map Edited: {:?}", &odd_map);
+    mode(String::from("Odd"), &random_numbers_odd);
 
     println!("\n");
 
@@ -76,27 +40,74 @@ pub fn mememo() {
     println!("Random Numbers Even sorted: {:?}", random_numbers_even);
     
     // Mean
-    let mut sum_all_even = 0;
-
-    for element in &random_numbers_even {
-        sum_all_even += element;
-    }
-
-    println!("Sum: {}", sum_all_even);
-
-    let mean_even = sum_all_even / 2;
-
-    println!("Even Mean: {}", mean_even);
+    mean(String::from("Even"), &random_numbers_even);
 
     // Median
-    let length_vec_even = random_numbers_even.len();
+    median_even(&random_numbers_even);
+
+    // Mode
+    mode(String::from("Even"), &random_numbers_even);
+
+}
+
+fn mean(op_name: String, given_vec: &Vec<i32>, ) {
+    let mut sum_all = 0;
+
+    for element in given_vec {
+        sum_all += element;
+    }
+
+    println!("Sum: {}", sum_all);
+
+    let mean = sum_all / 2;
+
+    println!("{} Mean: {}", &op_name, mean);
+}
+
+fn median_odd(given_vec: &Vec<i32>, ) {
+    let length_vec = given_vec.len();
+    println!("Length Odd: {}", length_vec);
+
+    let avg = given_vec.len() / 2;
+    println!("Odd Median: {}", given_vec[avg]);
+}
+
+fn median_even(given_vec: &Vec<i32>) {
+    let length_vec_even = given_vec.len();
     println!("Length Even: {}", length_vec_even);
 
     let mid_1 = length_vec_even / 2;
     let mid_2 = length_vec_even / 2 + 1;
     
-    let avg_even = (random_numbers_even[mid_1 - 1] + random_numbers_even[mid_2 - 1]) / 2;
+    let avg_even = (given_vec[mid_1 - 1] + given_vec[mid_2 - 1]) / 2;
 
     println!("Even Median: {}", avg_even);
+}
 
+fn mode(op_name: String, given_vec: &Vec<i32>) {
+    let mut map = HashMap::new();
+
+    for &num in given_vec {
+        *map.entry(num).or_insert(0) += 1;
+    }
+
+    println!("fn {} Map Edited: {:#?}", op_name, &map);
+
+    // Find the element with the maximum occurrences
+    let mut max_count = 0;
+    let mut max_element = None;
+    for (element, &count) in &map {
+        if count > max_count {
+            max_count = count;
+            max_element = Some(element);
+        }
+    }
+    
+    // Output the element with the most occurrences
+    if let Some(max_element) = max_element {
+        println!("{} Mode: {}", op_name,  max_element);
+        println!("{} Mode occurrences: {} times", op_name,  max_count);
+    } else {
+        println!("No {} elements found", op_name);
+    }
 }
