@@ -1,10 +1,11 @@
 // mod test;
-mod miniprojects;
+// mod miniprojects;
 // mod concepts;
 // mod ownership;
 // mod structure;
 // mod manage;
 // mod collections;
+mod errhandling;
 
 fn main() {
     // miniprojects::guessing_game::guessing_game();
@@ -15,5 +16,6 @@ fn main() {
     // manage::manage::manage();
     // collections::common_collections::common_collections();
     // miniprojects::list_of_names::list_of_names();
-    miniprojects::mememo::mememo();
+    // miniprojects::mememo::mememo();
+    errhandling::errhandling::errhandling();
 }

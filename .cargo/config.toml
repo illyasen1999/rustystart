@@ -1,0 +1,7 @@
+# https://stackoverflow.com/questions/59131262/rust-backtrace-on-windows
+
+# not bothering with the OS specifics
+
+[env]
+# set to 1 for a full list of the backtrace and set back to 0 if your done
+RUST_BACKTRACE = "0"

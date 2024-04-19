@@ -243,7 +243,4 @@ pub fn common_collections() {
 
     // Hashing Functions for Security of software
     // https://doc.rust-lang.org/book/ch08-03-hash-maps.html#hashing-functions
-
-    // https://doc.rust-lang.org/book/ch08-03-hash-maps.html#summary
-
 }
