@@ -18,4 +18,6 @@ fn main() {
     // miniprojects::list_of_names::list_of_names();
     // miniprojects::mememo::mememo();
     errhandling::errhandling::errhandling();
+
+    // https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html#a-shortcut-for-propagating-errors-the--operator
 }
