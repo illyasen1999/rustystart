@@ -1,1 +1,1 @@
-pub mod rustbigtopics;
+pub mod rustgenerics;
