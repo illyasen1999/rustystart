@@ -1,3 +1,6 @@
+use std::error::Error;
+use std::fs::File;
+
 // mod test;
 // mod miniprojects;
 // mod concepts;
@@ -5,9 +8,11 @@
 // mod structure;
 // mod manage;
 // mod collections;
-mod errhandling;
+// mod errhandling;
+mod bigtopics;
 
-fn main() {
+// Box<> is a trait object(Chapter 17) for now in this case it means that "return any kind of Error"
+fn main() -> Result<(), Box<dyn Error>> {
     // miniprojects::guessing_game::guessing_game();
     // concepts::common_concepts::common_concepts();
     // ownership::ownborrow::ownborrow()
@@ -17,7 +22,12 @@ fn main() {
     // collections::common_collections::common_collections();
     // miniprojects::list_of_names::list_of_names();
     // miniprojects::mememo::mememo();
-    errhandling::errhandling::errhandling();
+    // errhandling::errhandling::errhandling();
+    // errhandling::errhandling2::errhandling2();
+    bigtopics::rustbigtopics::rust_big_topics();
 
-    // https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html#a-shortcut-for-propagating-errors-the--operator
+    // the question mark(?) operator cannot be used in the "main" function due to restrictions like it can only return Nothing or it can return a Result type, it only works if the function returns a Result type 
+    let _f = File::open("hello.txt")?;
+
+    Ok(())
 }
