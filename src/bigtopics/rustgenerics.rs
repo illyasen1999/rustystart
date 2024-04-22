@@ -60,7 +60,7 @@ enum TestResult<T, E> {
 pub fn rust_generics() {
     println!("Rust Big Topic: Generics");
 
-    // Generics - abstract stand-ins for concrete types or other properties
+    // Sub-topic: Generics - abstract stand-ins for concrete types or other properties
 
     // functions can take parameters of some generic type, istead of a concrete type like i32 or String
 
@@ -106,12 +106,12 @@ pub fn rust_generics() {
     // Now using Generics
     // Generics allow code to operate on abstract types
 
-    // this code wont complie
-    // let int_res = _largest(&number_list);
-    // println!("Largest item: {:?}", &int_res);
+    println!("\nUsing Generics with <T>");
+    let int_res = _largest(&number_list);
+    println!("Largest item: {:?}", &int_res);
 
-    // let char_res = _largest(&char_list);
-    // println!("Largest item: {:?}", &char_res);
+    let char_res = _largest(&char_list);
+    println!("Largest item: {:?}", &char_res);
 
     // this works because the fields use the same type
     let _point_int = Point { x: 25, y: 50 };
@@ -141,10 +141,14 @@ pub fn rust_generics() {
 
     println!("p3.x = {}, p3.y = {}", p3.a, p3.b);
 
-    todo!()
-    // https://doc.rust-lang.org/book/ch10-01-syntax.html#performance-of-code-using-generics
-    
-    // https://www.youtube.com/watch?v=6rcTSxPJ6Bw&list=PLai5B987bZ9CoVR-QEIN9foz4QCJ0H2Y8&index=10
+    // Performance on using Generics
+    /*
+        - using generics doesnt make the program slower
+        - Rust uses Monomorphization(turning generic code into specific code)
+
+        https://doc.rust-lang.org/book/ch10-01-syntax.html#performance-of-code-using-generics
+    */
+
 }
 
 fn largest_i32(list: &[i32]) -> &i32 {
@@ -175,14 +179,15 @@ fn largest_char(list: &[char]) -> &char {
 
 // Generics in function definitions
 // to add a generic type to a function add the angle brackets(<>) after the function name and the letter "T" which indicates as a type, you can use any letter or name you want but the letter "T" for type is Rust's naming convention
-// fn _largest<T>(list: &[T]) -> &T {
-//     let mut largest = &list[0];
+// these traits make the generic restricted to any type that can be compared
+fn _largest<T: PartialOrd + Copy>(list: &[T]) -> &T {
+    let mut largest = &list[0];
 
-//     for item in list {
-        // if item > largest { // this wont compile because of an error here
-//             largest = item
-//         }
-//     }
-//     // println!("Largest item: {:?}", largest);
-//     return largest
-// }
+    for item in list {
+        if item > largest { // this wont compile because of an error here which requires a trait
+            largest = item
+        }
+    }
+    // println!("Largest item: {:?}", largest);
+    return largest
+}

@@ -24,7 +24,9 @@ fn main() -> Result<(), Box<dyn Error>> {
     // miniprojects::mememo::mememo();
     // errhandling::errhandling::errhandling();
     // errhandling::errhandling2::errhandling2();
-    bigtopics::rustgenerics::rust_generics();
+    // bigtopics::rustgenerics::rust_generics();
+    // bigtopics::rusttraits::rust_traits();
+    bigtopics::rustlifetimes::rust_lifetimes();
 
     // the question mark(?) operator cannot be used in the "main" function due to restrictions like it can only return Nothing or it can return a Result type, it only works if the function returns a Result type 
     let _f = File::open("hello.txt")?;
