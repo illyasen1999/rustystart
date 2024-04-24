@@ -4,7 +4,7 @@ My compilation of Rust learnings and topics from what I can understand, and also
 
 I want to just focus on Rust and see what I can do with using the Rust Language. 🦀
 
-And try to commit to Github atleast everyday no matter how small or ugly the code is still commit it. 🦀
+And try to commit to Github atleast everyday no matter how small or ugly the code is still commit it until my Todo List is complete. 🦀
 
 ![Ferris the Crab](image.png)
 
@@ -12,9 +12,5 @@ And try to commit to Github atleast everyday no matter how small or ugly the cod
 ## TODO: 🦀
 * [x] Finish Chapter 6
 * [x] Create a small project (After Chapter 6)
-* [ ] Continue with The Book(Chapter 7 - Chapter 10)
+* [x] Continue with The Book(Chapter 7 - Chapter 10)
 * [ ] Attempt to create some small to medium sized project with Rust
-  
-## FIXING:
-* [x] ~~Fix problem with the Restaurant Library not working properly~~
-* [ ] ...

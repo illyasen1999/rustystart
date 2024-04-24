@@ -1,4 +1,4 @@
-workspace = { members = ["restaurant"] }
+workspace = { members = [ "adder","restaurant"] }
 [package]
 name = "rustystart"
 version = "0.1.0"
@@ -11,3 +11,4 @@ rand = "0.8.5"
 # this is only a local unpublished lib
 restaurant = { path = "./restaurant" }
 unicode-segmentation = "1.11.0"
+adder = { path = "./adder" }

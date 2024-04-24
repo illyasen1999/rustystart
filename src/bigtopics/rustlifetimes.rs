@@ -1,3 +1,5 @@
+// SRC: https://www.youtube.com/watch?v=juIINGuZyBc&list=PLai5B987bZ9CoVR-QEIN9foz4QCJ0H2Y8&index=13
+
 // Lifetimes in structs
 // in the past we use Structs with owned data but when using a reference we use Lifetimes
 // this Struct means that it cannot outlive the reference

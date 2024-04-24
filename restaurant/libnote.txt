@@ -1,0 +1,8 @@
+Rust Library Commands:
+* cargo new <filename> --lib | to create a library
+* cargo test | run the tests
+* cargo test -- -show-output | show the output of a test like printing
+* cargo test <function_name> | test a specific function
+* cargo test <part_of_a_name> | test functions that have that same name part
+* cargo test -- --ignored | run the ignored test
+* cargo test -- --test-threads=1 | run the test in a number of threads(might make the test slow to run)
