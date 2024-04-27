@@ -13,4 +13,6 @@ And try to commit to Github atleast everyday no matter how small or ugly the cod
 * [x] Finish Chapter 6
 * [x] Create a small project (After Chapter 6)
 * [x] Continue with The Book(Chapter 7 - Chapter 10)
-* [ ] Attempt to create some small to medium sized project with Rust
+* [ ] ~~Attempt to create some small to medium sized project with Rust~~
+  
+### Will continue in the future

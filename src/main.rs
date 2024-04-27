@@ -31,5 +31,6 @@ fn main() -> Result<(), Box<dyn Error>> {
     // the question mark(?) operator cannot be used in the "main" function due to restrictions like it can only return Nothing or it can return a Result type, it only works if the function returns a Result type 
     let _f = File::open("hello.txt")?;
 
+    // TODO: https://rust-cli.github.io/book/index.html
     Ok(())
 }
